@@ -3,6 +3,7 @@ from flask_cors import CORS
 from pymongo import MongoClient
 import requests
 from datetime import datetime
+import os
 
 app = Flask(__name__)
 CORS(app)
@@ -50,9 +51,18 @@ class MongoDBHandler:
 # Initialize MongoDB handler
 db_handler = MongoDBHandler()
 
+@app.errorhandler(500)
+def handle_500_error(error):
+    app.logger.error(f'Internal Server Error: {error}')
+    return jsonify({'error': 'Internal Server Error', 'details': str(error)}), 500
+
 @app.route('/')
 def index():
-    return render_template('index.html', player_ids=PLAYER_IDS)
+    try:
+        return render_template('index.html', player_ids=PLAYER_IDS)
+    except Exception as e:
+        app.logger.error(f'Error in index route: {e}')
+        return jsonify({'error': str(e)}), 500
 
 @app.route('/api/stats', methods=['GET'])
 def get_stats():
@@ -117,4 +127,4 @@ def refresh_data():
         }), 500
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(host='0.0.0.0', port=int(os.environ.get('PORT', 8080)))
