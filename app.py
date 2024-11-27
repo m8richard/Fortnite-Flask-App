@@ -21,9 +21,20 @@ PLAYER_IDS = {
 # MongoDB connection
 class MongoDBHandler:
     def __init__(self):
-        self.client = MongoClient("mongodb+srv://google_colab_Fortnite_script:clwwQLdpK1BPHkoR@cluster0.2m4lj.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0")
-        self.db = self.client['M8_data']
-        self.collection = self.db['fortnite_Stats']
+        try:
+            # Add connection timeout
+            self.client = MongoClient(
+                "mongodb+srv://google_colab_Fortnite_script:clwwQLdpK1BPHkoR@cluster0.2m4lj.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0",
+                serverSelectionTimeoutMS=5000  # 5 second timeout
+            )
+            # Test the connection
+            self.client.admin.command('ping')
+            self.db = self.client['M8_data']
+            self.collection = self.db['fortnite_stats']
+            print("✅ MongoDB connection successful")
+        except Exception as e:
+            print(f"❌ MongoDB connection failed: {str(e)}")
+            raise
 
     def get_all_stats(self):
         try:
