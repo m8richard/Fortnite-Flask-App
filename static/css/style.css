@@ -1,0 +1,206 @@
+/* Variables */
+:root {
+    /* Colors - Light Theme */
+    --background-light: #f8f9fa;
+    --card-bg-light: white;
+    --text-light: black;
+    --subtext-light: #666;
+    --border-light: rgba(0, 0, 0, 0.1);
+    
+    /* Colors - Dark Theme */
+    --background-dark: #1a1a1a;
+    --card-bg-dark: #2d2d2d;
+    --text-dark: white;
+    --subtext-dark: #aaa;
+    --border-dark: rgba(255, 255, 255, 0.1);
+    
+    /* Gradients */
+    --header-gradient: linear-gradient(90deg, #9BE957 85%, #EF9BF4 100%);
+    
+    /* Spacing */
+    --card-padding: 20px;
+    --card-margin: 10px;
+    --card-radius: 8px;
+    
+    /* Typography */
+    --stat-value-size: 28px;
+    --subtext-size: 14px;
+    
+    /* Transitions */
+    --theme-transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* Base Styles */
+body {
+    transition: var(--theme-transition);
+    min-height: 100vh;
+    padding: 20px;
+}
+
+/* Theme Styles */
+.light-theme {
+    background-color: var(--background-light);
+    color: var(--text-light);
+}
+
+.dark-theme {
+    background-color: var(--background-dark);
+    color: var(--text-dark);
+}
+
+/* Header Styles */
+.header-card {
+    background: var(--header-gradient);
+    padding: var(--card-padding);
+    border-radius: var(--card-radius);
+    color: var(--text-light);
+    margin-bottom: 20px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.controls-container {
+    margin-top: 15px;
+}
+
+/* Card Styles */
+.card {
+    padding: var(--card-padding);
+    margin: var(--card-margin);
+    border-radius: var(--card-radius);
+    transition: var(--theme-transition);
+    border: none;
+}
+
+.light-theme .card {
+    background-color: var(--card-bg-light);
+    box-shadow: 0 2px 4px var(--border-light);
+}
+
+.dark-theme .card {
+    background-color: var(--card-bg-dark);
+    box-shadow: 0 2px 4px var(--border-dark);
+}
+
+/* Card Content Styles */
+.card-title {
+    color: inherit;
+    margin-bottom: 15px;
+    font-weight: 500;
+}
+
+.stat-value {
+    font-size: var(--stat-value-size);
+    font-weight: bold;
+    margin: 10px 0;
+}
+
+.light-theme .stat-value {
+    color: var(--text-light);
+}
+
+.dark-theme .stat-value {
+    color: var(--text-dark);
+}
+
+.subtext {
+    font-size: var(--subtext-size);
+}
+
+.light-theme .subtext {
+    color: var(--subtext-light);
+}
+
+.dark-theme .subtext {
+    color: var(--subtext-dark);
+}
+
+/* Form Control Styles */
+.form-select {
+    transition: var(--theme-transition);
+    cursor: pointer;
+}
+
+.light-theme .form-select {
+    background-color: var(--card-bg-light);
+    color: var(--text-light);
+    border-color: var(--border-light);
+}
+
+.dark-theme .form-select {
+    background-color: var(--card-bg-dark);
+    color: var(--text-dark);
+    border-color: var(--border-dark);
+}
+
+.dark-theme .form-select option {
+    background-color: var(--card-bg-dark);
+    color: var(--text-dark);
+}
+
+/* Button Styles */
+.btn {
+    transition: var(--theme-transition);
+}
+
+/* Error Display Styles */
+.alert {
+    padding: 15px;
+    border-radius: var(--card-radius);
+    margin-bottom: 15px;
+    animation: fadeIn 0.3s ease-in;
+}
+
+/* Loading States */
+.btn:disabled {
+    opacity: 0.7;
+    cursor: not-allowed;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+    :root {
+        --card-padding: 15px;
+        --stat-value-size: 24px;
+    }
+    
+    body {
+        padding: 10px;
+    }
+    
+    .header-card {
+        margin-bottom: 15px;
+    }
+    
+    .controls-container {
+        margin-top: 10px;
+    }
+}
+
+/* Animations */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Utility Classes */
+.w-100 {
+    width: 100%;
+}
+
+.mb-2 {
+    margin-bottom: 0.5rem;
+}
+
+.mb-3 {
+    margin-bottom: 1rem;
+}
+
+.mb-4 {
+    margin-bottom: 1.5rem;
+}
